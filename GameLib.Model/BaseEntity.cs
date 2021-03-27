@@ -9,7 +9,8 @@ namespace GameLib.Model
         [Key]
         public Guid Id { get; set; }
 
-        public BaseEntity WithId(){
+        public IBaseEntity WithId()
+        {
             if(this.Id == null){
                 this.Id = Guid.NewGuid();
                 return this;

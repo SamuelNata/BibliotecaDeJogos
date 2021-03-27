@@ -19,6 +19,11 @@ namespace GameLib.Service
 
         public virtual Task<int> Save(TEntity obj)
         {
+            if(obj.Id == null)
+            {
+                obj = (TEntity)obj.WithId();
+            }
+            
             return Repository.Save(obj);
         }
 

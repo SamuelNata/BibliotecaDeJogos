@@ -5,10 +5,8 @@ using GameLib.Model;
 
 namespace GameLib.Model.Entity
 {
-    public class User : IBaseEntity
+    public class User : BaseEntity
     {
-        public Guid Id { get; set; }
-
         [Required]
         [MaxLength(100)]
         [Display(Name="Apelido")]

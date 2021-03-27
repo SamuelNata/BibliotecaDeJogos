@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameLib.Model\GameLib.Model.csproj" />
+    <ProjectReference Include="..\GameLib.Repository\GameLib.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>

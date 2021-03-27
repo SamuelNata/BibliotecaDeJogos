@@ -11,6 +11,9 @@ using GameLib.Repository.DbContext;
 using GameLib.API.Extensions;
 using System.Collections.Generic;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
+using GameLib.Model.Entity;
+using AutoMapper;
 
 namespace GameLib.API
 {
@@ -98,6 +101,8 @@ namespace GameLib.API
             });
 
             services.AddServicesAndRepositories();
+
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(User)));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

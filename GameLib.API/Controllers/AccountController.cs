@@ -55,7 +55,7 @@ namespace GameLib.API.Controllers
         [AllowAnonymous]
         [HttpPut]
         [Route("sign_in")]
-        public async Task<ActionResult<dynamic>> SignIn([FromBody]UserDTO model)
+        public async Task<ActionResult<User>> SignIn([FromBody]UserDTO model)
         {
             var password = model.Password;
             var newUser = new User
@@ -68,7 +68,7 @@ namespace GameLib.API.Controllers
             var user = await _userService.CreateNewUser(newUser, password);
             user.Password = null;
 
-            return new { user };
+            return user;
         }
 
         [HttpGet]

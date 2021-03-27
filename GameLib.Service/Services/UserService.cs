@@ -19,12 +19,17 @@ namespace GameLib.Service
             return Repository.FindToLogin(username, passswordMD5);
         }
 
+        public override Task<int> Save(User user)
+        {
+            throw new System.Exception("This method shold not be used, use 'CreateNewUser' instead.");
+        }
+
         public async Task<User> CreateNewUser(User user, string plainTextPassword)
         {
             var dbUser = await Repository.GetByUsername(user.Username);
             if(dbUser != null)
             {
-                throw new BusinessRuleFException("Esse nome de usuário já está em uso");
+                throw new AlredyExistFException("Esse nome de usuário já está em uso");
             }
 
             ValidatePassword(plainTextPassword);

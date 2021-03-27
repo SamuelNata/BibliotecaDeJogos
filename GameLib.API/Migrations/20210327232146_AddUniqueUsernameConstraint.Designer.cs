@@ -3,15 +3,17 @@ using System;
 using GameLib.Repository.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GameLib.API.Migrations
 {
     [DbContext(typeof(GameLibDbContext))]
-    partial class GameLibDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210327232146_AddUniqueUsernameConstraint")]
+    partial class AddUniqueUsernameConstraint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

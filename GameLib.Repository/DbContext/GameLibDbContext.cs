@@ -13,6 +13,10 @@ namespace GameLib.Repository.DbContext
             base.OnModelCreating(modelBuilder);
             // To query a non-entity class, add the configuration here
             // modelBuilder.Entity<GameBorrowingDTO>().HasNoKey();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
         }
 
         public DbSet<User> User { get; set; }

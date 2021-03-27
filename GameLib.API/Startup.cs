@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using GameLib.Repository.DbContext;
 using GameLib.API.Extensions;
+using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
 
 namespace GameLib.API
 {
@@ -52,9 +54,48 @@ namespace GameLib.API
 
             services.AddDbContext<GameLibDbContext>(options =>
                 options
-                    .UseNpgsql(Configuration.GetConnectionString("GameLib"))
-                    .UseSnakeCaseNamingConvention()
+                    .UseNpgsql(
+                        Configuration.GetConnectionString("GameLib"),
+                        o => o.MigrationsAssembly("GameLib.API")
+                    ).UseSnakeCaseNamingConvention()
             );
+
+            services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "JWT",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+
+                        },
+                        new List<string>()
+                    }
+                });
+
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"Header com token de autorização JWT. Exemplo: ""Authorization: Bearer {token}""",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "GameLib API",
+                    Version = "v1",
+                    Description = "Se how to use all of our endpoints",
+                });
+            });
 
             services.AddServicesAndRepositories();
         }
@@ -82,6 +123,9 @@ namespace GameLib.API
             {
                 endpoints.MapControllers();
             });
+
+            app.UseSwagger();  
+            app.UseSwaggerUI(options =>options.SwaggerEndpoint("/swagger/v1/swagger.json", "GameLib API"));
         }
     }
 }

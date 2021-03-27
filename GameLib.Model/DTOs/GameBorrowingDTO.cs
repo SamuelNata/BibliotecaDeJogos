@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameLib.Model.DTOs
 {
+    [NotMapped]
     public class GameBorrowingDTO
     {
         [Display(Name="Id")]

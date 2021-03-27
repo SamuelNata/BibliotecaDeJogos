@@ -12,13 +12,12 @@ namespace GameLib.Repository.DbContext
         {
             base.OnModelCreating(modelBuilder);
             // To query a non-entity class, add the configuration here
-            modelBuilder.Entity<GameBorrowingDTO>().HasNoKey();
+            // modelBuilder.Entity<GameBorrowingDTO>().HasNoKey();
         }
 
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<Game> Games { get; set; }
+        public DbSet<User> User { get; set; }
+        public DbSet<Game> Game { get; set; }
         public DbSet<GameBorrowing> GameBorrowing { get; set; }
-        public DbSet<UserGame> UserGames { get; set; }
+        public DbSet<UserGame> UserGame { get; set; }
     }
 }

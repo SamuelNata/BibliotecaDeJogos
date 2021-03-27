@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib.Service", "GameLib.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib.API", "GameLib.API\GameLib.API.csproj", "{298AA2EB-AA1B-46D8-9896-FACCC40644AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLib.Test", "GameLib.Test\GameLib.Test.csproj", "{22B46515-9368-4439-9DB3-A3E9055E2D87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{E8C1D9E3-761A-4F34-9A59-351AE8E1577A}.Release|x64.Build.0 = Release|Any CPU
 		{E8C1D9E3-761A-4F34-9A59-351AE8E1577A}.Release|x86.ActiveCfg = Release|Any CPU
 		{E8C1D9E3-761A-4F34-9A59-351AE8E1577A}.Release|x86.Build.0 = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|x64.Build.0 = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Debug|x86.Build.0 = Debug|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|x64.ActiveCfg = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|x64.Build.0 = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|x86.ActiveCfg = Release|Any CPU
+		{22B46515-9368-4439-9DB3-A3E9055E2D87}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

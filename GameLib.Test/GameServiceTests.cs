@@ -32,7 +32,7 @@ namespace GameLib.Test
             var game2 = new Game { Name = "game", Year = 1 };
             
             Assert.NotNull(await _sut.Save(game1));
-            await Assert.ThrowsAsync<Exception>(() => _sut.Save(game2));
+            await Assert.ThrowsAsync<AlredyExistFException>(() => _sut.Save(game2));
         }
     }
 }

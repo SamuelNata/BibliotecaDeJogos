@@ -13,4 +13,7 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=build-env /app/GameLib.API/out ./
 
-ENTRYPOINT ["dotnet", "GameLib.API.dll"]
+EXPOSE 80
+EXPOSE 443
+
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet GameLib.API.dll

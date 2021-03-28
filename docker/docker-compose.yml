@@ -15,12 +15,11 @@ services:
     gamelib_api:
         build:
             context: ../
-            dockerfile: GameLib.API/Dockerfile
-        image: game-lib/app:latest
+            dockerfile: Dockerfile
+        image: game-lib-api:latest
         environment:
-            ASPNETCORE_URLS: http://+:80
-
+            PORT: 8080
         ports:
-            - "5000:80"
+            - "5000:8080"
 volumes:
     gamelib-db-data:

@@ -31,7 +31,7 @@ namespace GameLib.Test
             var game1 = new Game { Name = "game", Year = 1 };
             var game2 = new Game { Name = "game", Year = 1 };
             
-            Assert.NotNull(await _sut.Save(game1));
+            Assert.NotEqual<int>(0, await _sut.Save(game1));
             await Assert.ThrowsAsync<AlredyExistFException>(() => _sut.Save(game2));
         }
     }

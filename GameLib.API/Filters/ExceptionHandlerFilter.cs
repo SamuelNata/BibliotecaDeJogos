@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using GameLib.Model.Exception;
+using GameLib.Model.DTOs;
 
 namespace GameLib.API.Filters
 {
@@ -25,23 +26,20 @@ namespace GameLib.API.Filters
 
         public void OnException(ExceptionContext context)
         {
-            if(typeof(UserFriendlyException).IsAssignableFrom(context.Exception.GetType())){
-                context.Result = new JsonResult(new { Erro = true, Message = context.Exception.Message });
-            }
-
-            if (_hostingEnvironment.IsDevelopment())
+            if (typeof(UserFriendlyException).IsAssignableFrom(context.Exception.GetType()) ||
+                _hostingEnvironment.IsDevelopment())
             {
-                if(typeof(UserFriendlyException).IsAssignableFrom(context.Exception.GetType()))
-                {
-                    context.Result = new JsonResult(new { Erro = true, Message = context.Exception.Message });
-                }
+                context.Result = new JsonResult(new MessageApiResult{ Success = false, Message = context.Exception.Message });
+                context.HttpContext.Response.StatusCode = 400;
+                return;
             }
             else
             {
-                if(typeof(UserFriendlyException).IsAssignableFrom(context.Exception.GetType()))
-                {
-                    context.Result = new JsonResult(new { Erro = true, Message = "Ocorreu um erro interno, entre em contato com o suporte" });
-                }
+                context.Result = new JsonResult(new MessageApiResult{
+                    Success = false, Message = "Ocorreu um erro interno, entre em contato com o suporte" 
+                });
+                context.HttpContext.Response.StatusCode = 500;
+                return;
             }
 
         }

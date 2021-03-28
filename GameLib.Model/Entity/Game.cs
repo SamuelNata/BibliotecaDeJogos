@@ -7,10 +7,8 @@ namespace GameLib.Model.Entity
     {
         [Required]
         [MaxLength(150)]
-        [Display(Name = "Nome")]
         public string Name { get; set; }
 
-        [Display(Name = "Ano de lançamento")]
         public short? Year { get; set; }
     }
 }

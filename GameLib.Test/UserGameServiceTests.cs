@@ -5,6 +5,7 @@ using System.Linq;
 using GameLib.Service;
 using GameLib.Repository;
 using GameLib.Model.Entity;
+using GameLib.Model.Exception;
 
 namespace GameLib.Test
 {
@@ -22,7 +23,7 @@ namespace GameLib.Test
 
 
         [Fact]
-        public async Task DatabaseIsAvailableAndCanBeConnectedTo()
+        public async Task DatabaseIsAvailableAndCanConnecte()
         {
             Assert.True(await DbContext.Database.CanConnectAsync());
         }
@@ -30,11 +31,11 @@ namespace GameLib.Test
         [Fact]
         public void CantMarkInexistentGameAsReturned()
         {
-            Assert.ThrowsAsync<Exception>(() => _sut.MarkAsReturned(new Guid()));
+            Assert.ThrowsAsync<NotFoundException>(() => _sut.MarkAsReturned(new Guid()));
         }
 
         [Fact]
-        public async Task MarkGameAsReturnedIfBorrowingExists()
+        public async Task CanMarkGameAsReturnedIfBorrowingExists()
         {
             // Data Setup
             this.AddRandomUsers(2);
@@ -50,19 +51,18 @@ namespace GameLib.Test
                 GameId = game.Id,
                 UserId = users[0].Id
             });
-            
-            await _sut.BorrowGame(game.Id, gameOwnership.Entity.Id, users[1].Id, DateTime.Now);
-
-            var borrow = DbContext.GameBorrowing.Add(new GameBorrowing
-            {
-                GameBorrowerId = users[0].Id,
-                GameOwnershipId = gameOwnership.Entity.Id
-            });
             DbContext.SaveChanges();
             
+            Assert.NotEqual<int>(0, await _sut.BorrowGame(game.Id, users[0].Id, users[1].Id, DateTime.Now));
+
+            var borrow = DbContext.GameBorrowing.First(g =>
+                g.GameBorrowerId == users[1].Id &&
+                g.GameOwnershipId == gameOwnership.Entity.Id
+            );
+            
             // Test
-            var result = await _sut.MarkAsReturned(borrow.Entity.Id);
-            Assert.Equal(1, result);
+            var result = await _sut.MarkAsReturned(borrow.Id);
+            Assert.NotEqual(0, result);
         }
     }
 }

@@ -76,10 +76,10 @@ namespace GameLib.API.Controllers
         
         [HttpGet]
         [Route("my-games")]
-        [ProducesResponseType(typeof(List<Game>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<GameInfoDTO>), StatusCodes.Status200OK)]
         public async Task<IActionResult> ListMyGames()
         {
-            return Ok(await _userGameService.SearshGamesByUser(new Guid(CurrentUserId)));
+            return Ok(await _userGameService.SearchGamesBy(new Guid(CurrentUserId)));
         }
         
         [HttpPut]

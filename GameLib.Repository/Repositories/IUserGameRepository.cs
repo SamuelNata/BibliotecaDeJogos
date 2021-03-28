@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
+using GameLib.Model.DTOs;
 using GameLib.Model.Entity;
 
 namespace GameLib.Repository
@@ -16,13 +18,8 @@ namespace GameLib.Repository
         /// <returns></returns>
         Task<List<UserGame>> SearchByGameAndOwner(Guid ownerId, Guid? gameId = null, bool onlyBorrowable = false);
 
-        /// <summary>
-        /// Get the list of games one user
-        /// </summary>
-        /// <param name="userId">User id</param>
-        /// <returns></returns>
-        Task<List<Game>> SearshGamesByUser(Guid userId);
-    }
+        Task<List<GameInfoDTO>> SearchGamesBy(Guid? userId = null, Guid? gameId = null, bool? isBorrowed = null);
 
-    
+        ValueTask<UserGame> GetById(Guid id, params Expression<Func<UserGame,object>> [] includes);
+    }
 }

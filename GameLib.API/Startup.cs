@@ -105,14 +105,16 @@ namespace GameLib.API
             services.AddAutoMapper(Assembly.GetAssembly(typeof(User)));
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, GameLibDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
+            else
+            {
+                dbContext.Database.Migrate();
+            }
 
             app.UseRouting();
 

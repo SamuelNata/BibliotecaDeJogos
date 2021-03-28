@@ -6,7 +6,7 @@ using GameLib.Model;
 namespace GameLib.Model.DTOs
 {
     [NotMapped]
-    public class UserDTO
+    public class SignInUserDTO
     {
         [Required]
         [MaxLength(100)]

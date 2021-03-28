@@ -20,15 +20,24 @@ namespace GameLib.API.Controllers
     {
         
         private readonly IUserService _userService;
+        private readonly IUserGameService _userGameService;
+        private readonly IGameService _gameService;
         private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService, IMapper mapper)
+        public UsersController(
+            IUserService userService,
+            IUserGameService userGameService,
+            IGameService gameService,
+            IMapper mapper)
         {
             _userService = userService;
+            _userGameService = userGameService;
+            _gameService = gameService;
             _mapper = mapper;
         }
 
-        
+        #region User Endpoints
+
         [HttpGet]
         [Route("")]
         [ProducesResponseType(typeof(List<UserVM>), StatusCodes.Status200OK)]
@@ -59,5 +68,73 @@ namespace GameLib.API.Controllers
 
             return Ok(userVM);
         }
+    
+        #endregion User Endpoints
+
+
+        #region User's Game Endpoints        
+        
+        [HttpGet]
+        [Route("my-games")]
+        [ProducesResponseType(typeof(List<Game>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> ListMyGames()
+        {
+            return Ok(await _userGameService.SearshGamesByUser(new Guid(CurrentUserId)));
+        }
+        
+        [HttpPut]
+        [Route("my-games")]
+        [ProducesResponseType(typeof(MessageApiResult), StatusCodes.Status200OK)]
+        public async Task<IActionResult> AcquireGame([FromBody]CreateUserGameVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var userGame = new UserGame
+                {
+                    UserId = new Guid(CurrentUserId),
+                    GameId = model.GameId
+                };
+                var result = await _userGameService.Save(userGame);
+                if(result > 0)
+                {
+                    var game = await _gameService.GetById(model.GameId);
+                    return Ok(new MessageApiResult{
+                        Success = true,
+                        Message = $"Agora '{game.Name}' faz parte da sua coleção!"
+                    });
+                }
+                else
+                {
+                    return StatusCode(400, new MessageApiResult{
+                        Success = false,
+                        Message = "Não foi possível adicionar o este jogo a sua coleção"
+                    });
+                }
+            }
+            else
+            {
+                var erros = new List<string>();
+                ModelState.Values.ToList().ForEach(v => 
+                    erros.AddRange(v.Errors.Select(e => e.ErrorMessage).ToList())
+                );
+                return StatusCode(400, new MessageApiResult
+                { 
+                    Success = false,
+                    Message = string.Join("; ", erros)
+                });
+            }
+            
+        }
+
+        [HttpDelete]
+        [Route("my-games/{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteGameFromUser(Guid id)
+        {
+            var result = await _userGameService.RemoveGameFromUser(id, new Guid(CurrentUserId));
+            return NoContent();
+        }
+
+        #endregion User's Game Endpoints
     }
 }

@@ -35,12 +35,12 @@ namespace GameLib.Service
                 return await Save(borrowing);
             }
 
-            return 0;
+            throw new NotFoundException("Parece que esse usuário não possui o jogo para emprestar.");
         }
 
         public async Task<int> BorrowGame(Guid gameOwnershipId, Guid borrowerId, DateTime predictedDevolution)
         {
-            var gameOwnership = await _userGameRepository.GetById(gameOwnershipId);
+            var gameOwnership = await _userGameRepository.GetById(gameOwnershipId, g => g.Game, g => g.User);
             return await BorrowGame(gameOwnership.Game.Id, gameOwnership.User.Id, borrowerId, predictedDevolution);
         }
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GameLib.Model.DTOs;
 using GameLib.Model.Entity;
 
 namespace GameLib.Service
@@ -14,21 +15,16 @@ namespace GameLib.Service
         /// <param name="gameId">Id of the game</param>
         /// <param name="onlyBorrowable">Flag to search only games available to borrow</param>
         /// <returns></returns>
-         Task<List<UserGame>> SearchByGameAndOwner(Guid ownerId,Guid? gameId = null,bool onlyBorrowable = false);
+        Task<List<UserGame>> SearchByGameAndOwner(Guid ownerId,Guid? gameId = null,bool onlyBorrowable = false);
 
-        /// <summary>
-        /// Get the list of games one user
-        /// </summary>
-        /// <param name="userId">User id</param>
-        /// <returns></returns>
-        Task<List<Game>> SearshGamesByUser(Guid userId);
+        Task<List<GameInfoDTO>> SearchGamesBy(Guid? userId = null, Guid? gameId = null, bool? isBorrowed = null);
 
         /// <summary>
         /// Remove a user's Game
         /// </summary>
-        /// <param name="gameId">Game id</param>
-        /// <param name="userId">User id</param>
+        /// <param name="userGameId">User and game relation id</param>
+        /// <param name="ownerId">Game owner id</param>
         /// <returns></returns>
-        Task<int> RemoveGameFromUser(Guid gameId, Guid userId);
+        Task<int> RemoveGameFromUser(Guid userGameId, Guid ownerId);
     }
 }

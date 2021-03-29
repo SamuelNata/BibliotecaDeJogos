@@ -1,0 +1,25 @@
+version: '3'
+services:
+    gamelib_db:
+        image: postgres:11.9-alpine
+        environment:
+            POSTGRES_PASSWORD: gamelib-db-pw
+            POSTGRES_USER: gamelib-db-user
+            POSTGRES_DB: gamelib
+        volumes:
+            - gamelib-db-data:/var/lib/postgresql/data
+            - ${PWD}/postgresql/postgresql.conf:/etc/postgresql.conf
+        ports:
+            - "5555:5432"
+        command: postgres
+    gamelib_api:
+        build:
+            context: ../
+            dockerfile: Dockerfile
+        image: game-lib-api:latest
+        environment:
+            PORT: 8080
+        ports:
+            - "5000:8080"
+volumes:
+    gamelib-db-data:

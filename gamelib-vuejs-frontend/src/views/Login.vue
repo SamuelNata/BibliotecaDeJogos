@@ -96,7 +96,7 @@
 <style>
     @import '../assets/login/css/util.css';
     @import '../assets/login/css/main.css';
-    @import '../assets/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
+    @import '../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 </style>
 
 <script>

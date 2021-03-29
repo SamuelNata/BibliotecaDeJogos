@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import DefaultLayout from '../views/DefaultLayout.vue';
-import Home from '../views/Home.vue';
+import MyGames from '../views/MyGames.vue';
+import AllGames from '../views/AllGames.vue';
 
 Vue.use(VueRouter);
 
@@ -20,11 +21,18 @@ const routes = [
         component: DefaultLayout,
         children: [
             {
-                path: '',
+                path: 'MeusJogos',
                 alias: '',
-                component: Home,
-                name: 'Home',
-                meta: {description: 'Home'}
+                component: MyGames,
+                name: 'MeusJogos',
+                meta: {description: 'Meus Jogos'}
+            },
+            {
+                path: 'TodosOsJogos',
+                alias: '',
+                component: AllGames,
+                name: 'Todos os Jogos',
+                meta: {description: 'Todos os Jogos'}
             }
         ]
     }

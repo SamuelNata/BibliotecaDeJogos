@@ -22,18 +22,13 @@
           />
         </v-col>
 
-        <v-spacer class="hidden-sm-and-down" />
 
         <v-col
           cols="12"
           md="auto"
         >
           <div class="body-1 font-weight-light pt-6 pt-md-0 text-center">
-            &copy; 2019, made with
-            <v-icon size="18">
-              mdi-heart
-            </v-icon>
-            by <a href="https://www.creative-tim.com">Creative Tim</a> for a better web.
+            Esta página é uma customização de <a href="https://www.creative-tim.com/product/vuetify-material-dashboard">Vuetify Material Dashboard</a>
           </div>
         </v-col>
       </v-row>
@@ -43,26 +38,10 @@
 
 <script>
   export default {
-    name: 'DashboardCoreFooter',
+    name: 'CoreFooter',
 
     data: () => ({
       links: [
-        {
-          href: '#',
-          text: 'Creative Tim',
-        },
-        {
-          href: '#',
-          text: 'About Us',
-        },
-        {
-          href: '#',
-          text: 'Blog',
-        },
-        {
-          href: '#',
-          text: 'Licenses',
-        },
       ],
     }),
   }
@@ -75,4 +54,7 @@
       font-weight: 500
       text-decoration: none
       text-transform: uppercase
+    position: fixed
+    bottom: 0
+    width: 100%
 </style>

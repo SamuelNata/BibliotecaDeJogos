@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import createPersistedState from "vuex-persistedstate";
+import api from '../api/gamelib.api';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+    plugins: [createPersistedState({
+        storage: window.sessionStorage,
+    })],
     state: {
-        apiHost: "https://game-lib-api.herokuapp.com",
         token: null,
         userId: null,
         nickname: null
@@ -26,13 +29,11 @@ export default new Vuex.Store({
         },
     },
     actions: {
-        async login({ state, commit }, data) {
+        async login({ commit }, data) {
             try {
-                let response = await axios({
-                    url: `${state.apiHost}/account/login`,
-                    method: 'post',
-                    data: data
-                });
+                console.log(data);
+                let response = await api.accounts.login(data.username, data.password);
+                console.log("sdfasd");
                 commit('setToken', response.data.token);
                 commit('setUserInfo', {
                     userId: response.data.user.id,

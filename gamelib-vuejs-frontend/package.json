@@ -13,8 +13,10 @@
     "epic-spinners": "^1.1.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-toast-notification": "^0.6.1",
     "vuetify": "^2.4.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "vuex-persistedstate": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -62,5 +64,12 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "css": {
+    "loaderOptions": {
+      "sass": {
+        "prependData": "@import '@/sass/variables.scss';"
+      }
+    }
+  }
 }

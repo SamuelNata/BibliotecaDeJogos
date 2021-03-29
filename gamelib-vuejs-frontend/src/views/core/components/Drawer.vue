@@ -4,7 +4,7 @@
     :dark="true"
     :expand-on-hover="expandOnHover"
     :right="$vuetify.rtl"
-    src="https://cdn.vox-cdn.com/thumbor/9Xeh3XNXh0sgfQol4q4VUPZwK2g=/0x0:2048x1152/1375x1375/filters:focal(861x413:1187x739):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/68552984/50574670967_1cc51ff15c_k.0.jpg"
+    src="../../../assets/images/0615d8acca316bfc1860ee5a0b489cc0.jpg"
     mobile-breakpoint="960"
     app
     width="260"
@@ -83,9 +83,14 @@
     data: () => ({
       items: [
         {
-          icon: 'mdi-view-dashboard',
-          title: 'Minha Biblioteca',
-          to: '/',
+          icon: 'mdi-controller-classic',
+          title: 'Meus Jogos',
+          to: '/MeusJogos',
+        },
+        {
+          icon: 'mdi-clipboard-text',
+          title: 'Todos os Jogos',
+          to: '/TodosOsJogos',
         }
       ],
       barColor: 'rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)'

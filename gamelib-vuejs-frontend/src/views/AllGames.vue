@@ -66,10 +66,10 @@ export default {
                 let response = await this.$api.games.listGames(this.$store.state.token);
                 this.gamesList = response.data;
             } catch (error) {
-                return {
-                    success: false,
-                    message: error.response.data.message
-                }
+                this.$toast.open({
+                  message: error.response.data.message,
+                  type: 'error'
+                });
             }
         },
         async createNewGame() {
@@ -79,10 +79,10 @@ export default {
                 this.$toast.open("Jogo criado com sucesso!");
                 this.getGamesList();
             } catch (error) {
-                return {
-                    success: false,
-                    message: error.response.data.message
-                }
+              this.$toast.open({
+                message: error.response.data.message,
+                type: 'error'
+              });
             }
         }
     },

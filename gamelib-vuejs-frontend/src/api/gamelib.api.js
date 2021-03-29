@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 let http = axios.create({
-    baseURL: 'https://game-lib-api.herokuapp.com'
+    baseURL: process.env.GAMELIB_API_HOST || 'https://game-lib-api.herokuapp.com'
 });
 
 export default {

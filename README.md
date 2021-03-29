@@ -52,3 +52,16 @@ Note: Each layer is separated in a project.
 5. Unit Test
 6. Continuous integration, using GitHub Actions
 7. Deploy (Not continuous) with Heroku
+
+## Modeling
+Frist a conceptual entity relational diagram was made:
+<p align="center">
+  <img height="250" src="docs/concept_ER.png?raw=true">
+</p>
+
+Then a logic entity realtional diagram:
+<p align="center">
+  <img height="300" src="docs/logical_ER.png?raw=true">
+</p>
+
+And finally the classes.

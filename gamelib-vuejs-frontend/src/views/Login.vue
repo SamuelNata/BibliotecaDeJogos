@@ -101,8 +101,7 @@
 
 <script>
 // @ is an alias to /src
-import { BreedingRhombusSpinner } from 'epic-spinners'
-import axios from 'axios';
+import { BreedingRhombusSpinner } from 'epic-spinners';
 
 export default {
     name: 'Login',
@@ -136,7 +135,7 @@ export default {
             }
             else
             {
-                this.$router.push({ name: 'Home' })
+                this.$router.push({ name: 'Meus Jogos' })
             }
         },
         async signIn() {
@@ -146,15 +145,7 @@ export default {
             }
             this.loading = true;
             try {
-                await axios({
-                    url: `${this.$store.state.apiHost}/account/sign_in`,
-                    method: 'put',
-                    data: {
-                        nickname: this.name,
-                        username: this.username,
-                        password: this.password
-                    }
-                });
+                await this.$api.accounts.signIn(this.name, this.username, this.password);
                 this.successMessage = 'Conta criada, pode fazer login agora!';
                 this.username = '';
                 this.password = '';

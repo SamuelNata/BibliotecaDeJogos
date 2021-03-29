@@ -31,9 +31,7 @@ export default new Vuex.Store({
     actions: {
         async login({ commit }, data) {
             try {
-                console.log(data);
                 let response = await api.accounts.login(data.username, data.password);
-                console.log("sdfasd");
                 commit('setToken', response.data.token);
                 commit('setUserInfo', {
                     userId: response.data.user.id,

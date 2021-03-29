@@ -52,7 +52,7 @@
 
 <script>
 export default {
-    name: 'Home',
+    name: 'MyGames',
     components: {
     },
     data: () => ({
@@ -61,10 +61,8 @@ export default {
     }),
     methods: {
         async getUsersList() {
-            console.log(this.$api);
             try {
-                let response = await this.$api.users.listUsers(this.$store.state.token);
-                console.log(response.data);
+                await this.$api.users.listUsers(this.$store.state.token);
             } catch (error) {
                 return {
                     success: false,

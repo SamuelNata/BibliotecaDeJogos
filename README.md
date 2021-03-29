@@ -2,7 +2,7 @@
 A system to manage game's borrowing (like a library with that borrow books, but for games...)
 
 ## Can i try it?
-Of course, check [this out](https://game-lib-front.herokuapp.com/Login).
+Of course, check [this out](https://game-lib-front.herokuapp.com/).
 
 ## To run the project
 You can run every thing at once executing this command from the project root directory: ```docker-compose -f docker/docker-compose.yml up```

@@ -20,7 +20,7 @@ For this project, a architecture with layers was chosen for better responsabilit
 Nothing fenci here, it is a pretty default VueJS project.
 
 <p align="center">
-  <img height="700" src="docs/architecture.png?raw=true">
+  <img height="700" src="doc/architecture.png?raw=true">
 </p>
 
 
@@ -56,12 +56,12 @@ Note: Each layer is separated in a project.
 ## Modeling
 Frist a conceptual entity relational diagram was made:
 <p align="center">
-  <img height="250" src="docs/concept_ER.png?raw=true">
+  <img height="250" src="doc/concept_ER.png?raw=true">
 </p>
 
 Then a logic entity realtional diagram:
 <p align="center">
-  <img height="300" src="docs/logical_ER.png?raw=true">
+  <img height="300" src="doc/logical_ER.png?raw=true">
 </p>
 
 And finally the classes.

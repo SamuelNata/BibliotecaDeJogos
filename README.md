@@ -2,7 +2,7 @@
 A system to manage game's borrowing (like a library with that borrow books, but for games...)
 
 ## Can i try it?
-Of course, check [this out](https://game-lib-front.herokuapp.com/).
+Of course, check the app [here](https://game-lib-front.herokuapp.com/) and the API Swagger [here](http://game-lib-api.herokuapp.com/swagger/index.html).
 
 ## To run the project
 You can run every thing at once executing this command from the project root directory: ```docker-compose -f docker/docker-compose.yml up```
